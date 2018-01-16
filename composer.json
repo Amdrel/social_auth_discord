@@ -1,0 +1,22 @@
+{
+    "name": "drupal/social_auth_discord",
+    "type": "drupal-module",
+    "description": "Social Auth integration for Google.",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "homepage": "https://www.drupal.org/project/social_auth_discord",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/social_auth_discord",
+        "source": "http://cgit.drupalcode.org/social_auth_discord"
+    },
+    "require": {
+        "wohali/oauth2-discord-new": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Kifah Meeran (kifah-meeran)",
+            "email": "maskys@hackers.mu"
+        }
+    ]
+}

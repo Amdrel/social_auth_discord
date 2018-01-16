@@ -1,0 +1,8 @@
+name: Social Auth Discord
+type: module
+description: 'Social Auth integration for Discord.'
+package: Social
+core: 8.x
+configure: social_auth_discord.settings_form
+dependencies:
+  - social_auth (>= 8.x-2.x)

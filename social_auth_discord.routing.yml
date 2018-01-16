@@ -1,0 +1,25 @@
+social_auth_discord.redirect_to_discord:
+  path: 'user/login/discord'
+  defaults:
+    _controller: '\Drupal\social_auth_discord\Controller\DiscordAuthController::redirectToDiscord'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+social_auth_discord.callback:
+  path: 'user/login/discord/callback'
+  defaults:
+    _controller: '\Drupal\social_auth_discord\Controller\DiscordAuthController::callback'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+social_auth_discord.settings_form:
+  path: 'admin/config/social-api/social-auth/discord'
+  defaults:
+    _title: 'Social Auth Discord settings'
+    _form: '\Drupal\social_auth_discord\Form\DiscordAuthSettingsForm'
+  requirements:
+    _permission: 'administer social api authentication'
