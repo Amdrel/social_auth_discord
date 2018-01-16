@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\social_auth_google\Settings;
+namespace Drupal\social_auth_discord\Settings;
 
 /**
- * Defines an interface for Social Auth Google settings.
+ * Defines an interface for Social Auth Discord settings.
  */
-interface GoogleAuthSettingsInterface {
+interface DiscordAuthSettingsInterface {
 
   /**
    * Gets the client ID.

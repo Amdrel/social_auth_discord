@@ -66,7 +66,6 @@ class DiscordAuth extends NetworkBase implements DiscordAuthInterface {
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-      $container->get('social_auth.data_handler'),
       $configuration,
       $plugin_id,
       $plugin_definition,
@@ -81,8 +80,6 @@ class DiscordAuth extends NetworkBase implements DiscordAuthInterface {
   /**
    * DiscordAuth constructor.
    *
-   * @param \Drupal\social_auth\SocialAuthDataHandler $data_handler
-   *   The data handler.
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
@@ -100,8 +97,7 @@ class DiscordAuth extends NetworkBase implements DiscordAuthInterface {
    * @param \Drupal\Core\Site\Settings $settings
    *   The settings factory.
    */
-  public function __construct(SocialAuthDataHandler $data_handler,
-                              array $configuration,
+  public function __construct(array $configuration,
                               $plugin_id,
                               array $plugin_definition,
                               EntityTypeManagerInterface $entity_type_manager,
@@ -113,7 +109,6 @@ class DiscordAuth extends NetworkBase implements DiscordAuthInterface {
 
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $config_factory);
 
-    $this->dataHandler = $data_handler;
     $this->loggerFactory = $logger_factory;
     $this->requestContext = $requestContext;
     $this->siteSettings = $settings;
@@ -145,7 +140,6 @@ class DiscordAuth extends NetworkBase implements DiscordAuthInterface {
         'redirectUri' => $this->requestContext->getCompleteBaseUrl() . '/user/login/discord/callback',
         'accessType' => 'offline',
         'verify' => FALSE,
-        'hostedDomain' => $settings->getRestrictedDomain(),
       ];
 
       // Proxy configuration data for outward proxy.

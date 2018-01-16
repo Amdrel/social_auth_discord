@@ -193,7 +193,7 @@ class DiscordAuthController extends ControllerBase {
       }
     }
     // If user information could be retrieved.
-    return $this->userManager->authenticateUser($discord_profile->getName(), $discord_profile->getEmail(), $discord_profile->getId(), $this->discordManager->getAccessToken(), $discord_profile->getAvatarHash(), json_encode($data));
+    return $this->userManager->authenticateUser($discord_profile->getUsername(), $discord_profile->getEmail(), $discord_profile->getId(), $this->discordManager->getAccessToken(), $discord_profile->getAvatarHash(), json_encode($data));
   }
 
 }
