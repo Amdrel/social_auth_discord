@@ -48,6 +48,7 @@ class DiscordAuthManager extends OAuth2Manager {
    * @var \League\OAuth2\Client\Provider\Discord
    */
   protected $client;
+
   /**
    * The Discord access token.
    *
@@ -127,13 +128,12 @@ class DiscordAuthManager extends OAuth2Manager {
   /**
    * Gets the data by using the access token returned.
    *
-   * @param string $url
-   *   The API call url.
-   *
    * @return string
    *   Data returned by API call.
    */
-  public function getExtraDetails($url) {
+  public function getExtraDetails() {
+    $url = 'https://discordapp.com/api/users/@me';
+
     if ($url) {
       $httpRequest = $this->client->getAuthenticatedRequest('GET', $url, $this->token, []);
       $data = $this->client->getResponse($httpRequest);
@@ -179,6 +179,24 @@ class DiscordAuthManager extends OAuth2Manager {
 
     // Generate and return the URL where we should redirect the user.
     return $login_url;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAuthorizationUrl() {
+    return $this->getDiscordLoginUrl();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function requestEndPoint($path) {
+    $url = 'https://discordapp.com/api' . $path;
+    $request = $this->client->getAuthenticatedRequest('GET', $url, $this->getAccessToken());
+    $response = $this->client->getResponse($request);
+
+    return $response->getBody()->getContents();
   }
 
   /**
